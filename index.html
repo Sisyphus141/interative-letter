@@ -1,134 +1,186 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For You 💌</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For You 💌</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Georgia", serif;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
-      color: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .page {
-      display: none;
-      max-width: 600px;
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      animation: fadeIn 0.8s ease;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    h1, h2 {
-      text-align: center;
-      font-weight: normal;
-    }
-
-    p {
-      line-height: 1.7;
-      font-size: 1.05rem;
-    }
-
-    .buttons {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    button {
-      padding: 0.7rem 1.4rem;
-      border: none;
-      border-radius: 999px;
-      background: #ffb3c7;
-      color: #1e1e2f;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    button:hover {
-      background: #ffd1dc;
-      transform: translateY(-2px);
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Georgia", serif;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("images/main_background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-    }
-  </style>
-</head>
-<body>
 
-  <!-- PAGE 1 -->
-  <div class="page active" id="page-1">
-    <h1>Hey You 🌙</h1>
-    <p>
-      I made this just for you. Not a text, not a message —
-      something you can click through slowly, whenever you want.
-    </p>
-    <div class="buttons">
-      <button onclick="goToPage(2)">Open the letter</button>
+      /* Snow container */
+      #snow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .snowflake {
+        position: absolute;
+        top: -10px;
+        color: white;
+        opacity: 0.8;
+        animation: fall linear infinite;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(110vh);
+        }
+      }
+
+      .page {
+        position: relative;
+        z-index: 2;
+        display: none;
+        max-width: 600px;
+        padding: 2rem;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        animation: fadeIn 0.8s ease;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        font-weight: normal;
+      }
+
+      p {
+        line-height: 1.7;
+        font-size: 1.05rem;
+      }
+
+      .buttons {
+        margin-top: 2rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      button {
+        padding: 0.7rem 1.4rem;
+        border: none;
+        border-radius: 999px;
+        background: #ffb3c7;
+        color: #1e1e2f;
+        font-size: 1rem;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease;
+      }
+
+      button:hover {
+        background: #ffd1dc;
+        transform: translateY(-2px);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Snow -->
+    <div id="snow"></div>
+
+    <!-- PAGE 1 -->
+    <div class="page active" id="page-1">
+      <h1>Hey You 🌙</h1>
+      <p>
+        I made this just for you. Not a text, not a message — something you can
+        click through slowly, whenever you want.
+      </p>
+      <div class="buttons">
+        <button onclick="goToPage(2)">Open the letter</button>
+      </div>
     </div>
-  </div>
 
-  <!-- PAGE 2 -->
-  <div class="page" id="page-2">
-    <h2>A little note</h2>
-    <p>
-      This is where you write something meaningful.
-      A memory, a thank-you, or something you never quite said out loud.
-    </p>
-    <div class="buttons">
-      <button onclick="goToPage(3)">Keep going</button>
-      <button onclick="goToPage(1)">Go back</button>
+    <!-- PAGE 2 -->
+    <div class="page" id="page-2">
+      <h2>A little note</h2>
+      <p>
+        This is where you write something meaningful. A memory, a thank-you, or
+        something you never quite said out loud.
+      </p>
+      <div class="buttons">
+        <button onclick="goToPage(3)">Keep going</button>
+        <button onclick="goToPage(1)">Go back</button>
+      </div>
     </div>
-  </div>
 
-  <!-- PAGE 3 -->
-  <div class="page" id="page-3">
-    <h2>One last thing</h2>
-    <p>
-      You can end this however you want.
-      Soft. Funny. Honest. Or dramatic.
-    </p>
-    <div class="buttons">
-      <button onclick="goToPage(1)">Read again</button>
+    <!-- PAGE 3 -->
+    <div class="page" id="page-3">
+      <h2>One last thing</h2>
+      <p>
+        You can end this however you want. Soft. Funny. Honest. Or dramatic.
+      </p>
+      <div class="buttons">
+        <button onclick="goToPage(1)">Read again</button>
+      </div>
     </div>
-  </div>
 
-  <script>
-    function goToPage(pageNumber) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
+    <script>
+      function goToPage(pageNumber) {
+        document.querySelectorAll(".page").forEach((page) => {
+          page.classList.remove("active");
+        });
+        document.getElementById(`page-${pageNumber}`).classList.add("active");
+      }
 
-      document.getElementById(`page-${pageNumber}`).classList.add('active');
-    }
-  </script>
+      const snowContainer = document.getElementById("snow");
+      const snowflakes = 60;
 
-</body>
+      for (let i = 0; i < snowflakes; i++) {
+        const flake = document.createElement("div");
+        flake.className = "snowflake";
+        flake.textContent = "❄";
+
+        flake.style.left = Math.random() * 100 + "vw";
+        flake.style.animationDuration = 5 + Math.random() * 10 + "s";
+        flake.style.fontSize = 10 + Math.random() * 20 + "px";
+        flake.style.opacity = Math.random();
+
+        snowContainer.appendChild(flake);
+      }
+    </script>
+  </body>
 </html>
