@@ -26,7 +26,7 @@
         justify-content: center;
       }
 
-      /* Snow container */
+      /* Snow */
       #snow {
         position: fixed;
         top: 0;
@@ -34,7 +34,6 @@
         width: 100%;
         height: 100%;
         pointer-events: none;
-        overflow: hidden;
         z-index: 1;
       }
 
@@ -62,16 +61,11 @@
         border-radius: 16px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         animation: fadeIn 0.8s ease;
+        text-align: center;
       }
 
       .page.active {
         display: block;
-      }
-
-      h1,
-      h2 {
-        text-align: center;
-        font-weight: normal;
       }
 
       p {
@@ -80,7 +74,7 @@
       }
 
       .buttons {
-        margin-top: 2rem;
+        margin-top: 1.5rem;
         display: flex;
         gap: 1rem;
         justify-content: center;
@@ -105,6 +99,13 @@
         transform: translateY(-2px);
       }
 
+      .photo {
+        margin-top: 1.5rem;
+        width: 100%;
+        border-radius: 14px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -119,16 +120,26 @@
   </head>
 
   <body>
-    <!-- Snow -->
     <div id="snow"></div>
 
     <!-- PAGE 1 -->
     <div class="page active" id="page-1">
-      <h1>❤️Hi Love ❤️</h1>
-      <p>
-        December 15th, 2025 Happy Birthday, I hope you have had an amazing
-        beautful day full of joy, laughs, and love
-      </p>
+      <h1>❤️ Hi Love ❤️</h1>
+      <p>Happy birthday love, one final gift.</p>
+
+      <div class="buttons">
+        <button
+          onclick="window.open('https://open.spotify.com/track/4xqrdfXkTW4T0RauPLv3WA')"
+        >
+          🎧 Heather
+        </button>
+        <button
+          onclick="window.open('https://open.spotify.com/track/3Ihsf9l3qkGzd9eYwrBqE9')"
+        >
+          🎷 Moondance
+        </button>
+      </div>
+
       <div class="buttons">
         <button onclick="goToPage(2)">Open the letter</button>
       </div>
@@ -136,11 +147,17 @@
 
     <!-- PAGE 2 -->
     <div class="page" id="page-2">
-      <h2>A little note</h2>
+      <h2>Do you remember our first night together?</h2>
       <p>
-        This is where you write something meaningful. A memory, a thank-you, or
-        something you never quite said out loud.
+        Sleeping in the back seat of my car with a man you had barely kissed. I
+        didn't sleep much, yet I wouldn't change it for anything. To me it was
+        perfect — you are perfect. The joy and energy I felt knowing you had
+        slept even for a few hours in my arms was the best feeling in this
+        world. I am thankful for you every day, and every night.
       </p>
+
+      <img src="images/tree2.jpeg" alt="Memory" class="photo" />
+
       <div class="buttons">
         <button onclick="goToPage(3)">Keep going</button>
         <button onclick="goToPage(1)">Go back</button>
@@ -167,18 +184,14 @@
       }
 
       const snowContainer = document.getElementById("snow");
-      const snowflakes = 60;
-
-      for (let i = 0; i < snowflakes; i++) {
+      for (let i = 0; i < 60; i++) {
         const flake = document.createElement("div");
         flake.className = "snowflake";
         flake.textContent = "❄";
-
         flake.style.left = Math.random() * 100 + "vw";
         flake.style.animationDuration = 5 + Math.random() * 10 + "s";
         flake.style.fontSize = 10 + Math.random() * 20 + "px";
         flake.style.opacity = Math.random();
-
         snowContainer.appendChild(flake);
       }
     </script>
