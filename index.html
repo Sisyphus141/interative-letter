@@ -105,6 +105,12 @@
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
       }
 
+      .final-line {
+        margin-top: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -129,13 +135,8 @@
     <div class="page active" id="page-1">
       <h1>❤️ Hi Love ❤️</h1>
       <p>Happy birthday love, one final gift.</p>
-
       <div class="buttons">
-        <button onclick="startMusic()">▶️ Play Music</button>
-      </div>
-
-      <div class="buttons">
-        <button onclick="goToPage(2)">Open the letter</button>
+        <button onclick="openLetter()">Open the letter</button>
       </div>
     </div>
 
@@ -173,7 +174,14 @@
     <!-- PAGE 4 -->
     <div class="page" id="page-4">
       <h2>Do you remember being drunk with me?</h2>
-      <p>WRITE YOUR TEXT HERE</p>
+      <p>
+        I remember every second of it. You were so cute and funny, my heart
+        filled with joy at seeing you smile and hug me and kiss me. I remember
+        your butt being wet because you wanted to sit down next to me, I
+        remember how warm you felt. I wish I had taken many more pictures of
+        you. That night I realized just how much you trusted in me — thank you.
+        I love this picture, you are my calm in the storm. My rock.
+      </p>
       <img src="images/drunk.jpeg" class="photo" />
       <div class="buttons">
         <button onclick="goToPage(5)">Next</button>
@@ -183,7 +191,11 @@
     <!-- PAGE 5 -->
     <div class="page" id="page-5">
       <h2>In the cold</h2>
-      <p>WRITE YOUR TEXT HERE</p>
+      <p>
+        You are my warmth. In the cold I see myself looking for you. In the
+        coldest of nights, you are what brings me warmth and comfort. That
+        beautiful smile is everything to me.
+      </p>
       <img src="images/smile_hot_choco.jpeg" class="photo" />
       <div class="buttons">
         <button onclick="goToPage(6)">Next</button>
@@ -193,7 +205,11 @@
     <!-- PAGE 6 -->
     <div class="page" id="page-6">
       <h2>Gym</h2>
-      <p>WRITE YOUR TEXT HERE</p>
+      <p>
+        You don't only bring joy to my life but you make me want to be better,
+        for me and for you. I love going to the gym with you. Thank you for
+        making me a better man every day.
+      </p>
       <img src="images/gym2.jpeg" class="photo" />
       <div class="buttons">
         <button onclick="goToPage(7)">Next</button>
@@ -203,7 +219,11 @@
     <!-- PAGE 7 -->
     <div class="page" id="page-7">
       <h2>With you...</h2>
-      <p>WRITE YOUR TEXT HERE</p>
+      <p>
+        I feel at home. I feel like I belong and I am understood. I wish to have
+        this feeling for the rest of my life with you. Thank you for coming into
+        my life — you mean the world to me. You are my world.
+      </p>
       <img src="images/cook.jpeg" class="photo" />
       <div class="buttons">
         <button onclick="goToPage(8)">Next</button>
@@ -213,7 +233,17 @@
     <!-- PAGE 8 -->
     <div class="page" id="page-8">
       <h2>Happy birthday my love</h2>
-      <p>WRITE YOUR FINAL MESSAGE HERE</p>
+      <p>
+        You have such an ambitious hunger for your future, for our future. I
+        can't help but look up to you even though you are younger than me. You
+        are an amazing woman — thank you for allowing me into your life. I wish
+        to spend the rest of mine with you. I can't wait to make countless
+        memories by your side. I look forward to every day and night with you. I
+        love you.
+      </p>
+
+      <p class="final-line">Happy birhtday my love&lt;3</p>
+
       <img src="images/tree.jpeg" class="photo" />
       <div class="buttons">
         <button onclick="goToPage(1)">Read again ❤️</button>
@@ -224,12 +254,13 @@
       const music = document.getElementById("bg-music");
       let musicStarted = false;
 
-      function startMusic() {
+      function openLetter() {
         if (!musicStarted) {
           music.volume = 0.35;
           music.play().catch(() => {});
           musicStarted = true;
         }
+        goToPage(2);
       }
 
       function goToPage(pageNumber) {
