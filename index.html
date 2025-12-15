@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>For You 💌</title>
+    <title>Love you 💌</title>
 
     <style>
       * {
@@ -120,7 +120,13 @@
   </head>
 
   <body>
+    <!-- Snow -->
     <div id="snow"></div>
+
+    <!-- Audio -->
+    <audio id="bg-music" loop>
+      <source src="audio/song.mp3" type="audio/mpeg" />
+    </audio>
 
     <!-- PAGE 1 -->
     <div class="page active" id="page-1">
@@ -128,16 +134,7 @@
       <p>Happy birthday love, one final gift.</p>
 
       <div class="buttons">
-        <button
-          onclick="window.open('https://open.spotify.com/track/4xqrdfXkTW4T0RauPLv3WA')"
-        >
-          🎧 Heather
-        </button>
-        <button
-          onclick="window.open('https://open.spotify.com/track/3Ihsf9l3qkGzd9eYwrBqE9')"
-        >
-          🎷 Moondance
-        </button>
+        <button onclick="startMusic()">▶️ Play Music</button>
       </div>
 
       <div class="buttons">
@@ -166,16 +163,33 @@
 
     <!-- PAGE 3 -->
     <div class="page" id="page-3">
-      <h2>One last thing</h2>
+      <h2>Do you remember our first date?</h2>
       <p>
-        You can end this however you want. Soft. Funny. Honest. Or dramatic.
+        Of course you do, I made an interesting impression on you. The walk at
+        my school, the ducks, the pho... me asking to kiss you. I will never
+        live that down, but the laughs and smile that brings to your face is
+        priceless.
       </p>
+
+      <img src="images/first_date.jpeg" alt="First date" class="photo" />
+
       <div class="buttons">
         <button onclick="goToPage(1)">Read again</button>
       </div>
     </div>
 
     <script>
+      const music = document.getElementById("bg-music");
+      let musicStarted = false;
+
+      function startMusic() {
+        if (!musicStarted) {
+          music.volume = 0.35;
+          music.play().catch(() => {});
+          musicStarted = true;
+        }
+      }
+
       function goToPage(pageNumber) {
         document.querySelectorAll(".page").forEach((page) => {
           page.classList.remove("active");
