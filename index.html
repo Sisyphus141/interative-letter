@@ -18,7 +18,7 @@
           linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
           url("images/main_background.jpg");
         background-size: cover;
-        background-position: center;
+        background-position: center center;
         background-attachment: fixed;
         color: #f5f5f5;
         display: flex;
@@ -41,7 +41,7 @@
         position: absolute;
         top: -10px;
         animation: fall linear infinite;
-        opacity: 0.8;
+        opacity: 0.85;
       }
 
       @keyframes fall {
@@ -75,7 +75,9 @@
       .buttons {
         margin-top: 1.5rem;
         display: flex;
+        gap: 1rem;
         justify-content: center;
+        flex-wrap: wrap;
       }
 
       button {
@@ -86,10 +88,14 @@
         color: #1e1e2f;
         font-size: 1rem;
         cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease;
       }
 
       button:hover {
         background: #ffd1dc;
+        transform: translateY(-2px);
       }
 
       .photo {
@@ -131,6 +137,7 @@
       <p>Happy birthday love, one final gift.</p>
       <div class="buttons">
         <button onclick="openLetter()">Open the letter</button>
+        <button onclick="newChapter()">A new chapter ❤️</button>
       </div>
     </div>
 
@@ -166,10 +173,9 @@
       <h2>Do you remember being drunk with me?</h2>
       <p>
         I remember every second of it. You were so cute and funny, my heart
-        filled with joy at seeing you smile and hug me and kiss me. I remember
-        your butt being wet because you wanted to sit down next to me, I
-        remember how warm you felt. That night I realized just how much you
-        trusted in me — thank you. You are my calm in the storm. My rock.
+        filled with joy at seeing you smile and hug me and kiss me. That night I
+        realized just how much you trusted in me — thank you. You are my calm in
+        the storm. My rock.
       </p>
       <img src="images/drunk.jpeg" class="photo" />
       <div class="buttons"><button onclick="goToPage(5)">Next</button></div>
@@ -192,8 +198,7 @@
       <h2>Gym</h2>
       <p>
         You don't only bring joy to my life but you make me want to be better,
-        for me and for you. I love going to the gym with you. Thank you for
-        making me a better man every day.
+        for me and for you. Thank you for making me a better man every day.
       </p>
       <img src="images/gym2.jpeg" class="photo" />
       <div class="buttons"><button onclick="goToPage(7)">Next</button></div>
@@ -203,8 +208,8 @@
     <div class="page" id="page-7">
       <h2>With you...</h2>
       <p>
-        I feel at home. I feel like I belong and I am understood. I wish to have
-        this feeling for the rest of my life with you. You are my world.
+        I feel at home. I feel like I belong and I am understood. You are my
+        world.
       </p>
       <img src="images/cook.jpeg" class="photo" />
       <div class="buttons"><button onclick="goToPage(8)">Next</button></div>
@@ -220,16 +225,16 @@
       <p class="final-line">Happy birhtday my love&lt;3</p>
       <img src="images/tree.jpeg" class="photo" />
       <div class="buttons">
-        <button onclick="goToPage(9)">Continue ❤️</button>
+        <button onclick="goToPage(1)">Read again ❤️</button>
       </div>
     </div>
 
-    <!-- PAGE 9 -->
+    <!-- HEART PAGE -->
     <div class="page" id="page-9">
       <h2>Always you ❤️</h2>
       <p>No matter where life takes us, I choose you — again and again.</p>
       <div class="buttons">
-        <button onclick="goToPage(1)">Read again ❤️</button>
+        <button onclick="goToPage(1)">Continue ❤️</button>
       </div>
     </div>
 
@@ -238,13 +243,22 @@
       const effects = document.getElementById("effects");
       let musicStarted = false;
 
-      function openLetter() {
+      function ensureMusic() {
         if (!musicStarted) {
           music.volume = 0.35;
           music.play().catch(() => {});
           musicStarted = true;
         }
+      }
+
+      function openLetter() {
+        ensureMusic();
         goToPage(2);
+      }
+
+      function newChapter() {
+        ensureMusic();
+        goToPage(9);
       }
 
       function goToPage(n) {
@@ -252,29 +266,30 @@
           .querySelectorAll(".page")
           .forEach((p) => p.classList.remove("active"));
         document.getElementById(`page-${n}`).classList.add("active");
-
         effects.innerHTML = "";
 
         if (n === 9) {
           document.body.style.background =
             "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/back_ground_2.jpg')";
+          document.body.style.backgroundPosition = "center center";
           hearts();
         } else {
           document.body.style.background =
             "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/main_background.jpg')";
+          document.body.style.backgroundPosition = "center center";
           snow();
         }
       }
 
       function snow() {
         for (let i = 0; i < 60; i++) {
-          const s = document.createElement("div");
-          s.className = "effect";
-          s.textContent = "❄";
-          s.style.left = Math.random() * 100 + "vw";
-          s.style.animationDuration = 5 + Math.random() * 10 + "s";
-          s.style.fontSize = 10 + Math.random() * 20 + "px";
-          effects.appendChild(s);
+          const e = document.createElement("div");
+          e.className = "effect";
+          e.textContent = "❄";
+          e.style.left = Math.random() * 100 + "vw";
+          e.style.animationDuration = 5 + Math.random() * 10 + "s";
+          e.style.fontSize = 10 + Math.random() * 20 + "px";
+          effects.appendChild(e);
         }
       }
 
