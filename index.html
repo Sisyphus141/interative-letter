@@ -24,9 +24,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: background 1s ease;
       }
 
-      #snow {
+      #effects {
         position: fixed;
         top: 0;
         left: 0;
@@ -36,12 +37,11 @@
         z-index: 1;
       }
 
-      .snowflake {
+      .effect {
         position: absolute;
         top: -10px;
-        color: white;
-        opacity: 0.8;
         animation: fall linear infinite;
+        opacity: 0.8;
       }
 
       @keyframes fall {
@@ -75,9 +75,7 @@
       .buttons {
         margin-top: 1.5rem;
         display: flex;
-        gap: 1rem;
         justify-content: center;
-        flex-wrap: wrap;
       }
 
       button {
@@ -88,14 +86,10 @@
         color: #1e1e2f;
         font-size: 1rem;
         cursor: pointer;
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease;
       }
 
       button:hover {
         background: #ffd1dc;
-        transform: translateY(-2px);
       }
 
       .photo {
@@ -125,7 +119,7 @@
   </head>
 
   <body>
-    <div id="snow"></div>
+    <div id="effects"></div>
 
     <audio id="bg-music" loop>
       <source src="audio/song.mp3" type="audio/mpeg" />
@@ -151,9 +145,7 @@
         world. I am thankful for you every day, and every night.
       </p>
       <img src="images/tree2.jpeg" class="photo" />
-      <div class="buttons">
-        <button onclick="goToPage(3)">Next</button>
-      </div>
+      <div class="buttons"><button onclick="goToPage(3)">Next</button></div>
     </div>
 
     <!-- PAGE 3 -->
@@ -166,9 +158,7 @@
         priceless.
       </p>
       <img src="images/first_date.jpeg" class="photo" />
-      <div class="buttons">
-        <button onclick="goToPage(4)">Next</button>
-      </div>
+      <div class="buttons"><button onclick="goToPage(4)">Next</button></div>
     </div>
 
     <!-- PAGE 4 -->
@@ -178,14 +168,11 @@
         I remember every second of it. You were so cute and funny, my heart
         filled with joy at seeing you smile and hug me and kiss me. I remember
         your butt being wet because you wanted to sit down next to me, I
-        remember how warm you felt. I wish I had taken many more pictures of
-        you. That night I realized just how much you trusted in me — thank you.
-        I love this picture, you are my calm in the storm. My rock.
+        remember how warm you felt. That night I realized just how much you
+        trusted in me — thank you. You are my calm in the storm. My rock.
       </p>
       <img src="images/drunk.jpeg" class="photo" />
-      <div class="buttons">
-        <button onclick="goToPage(5)">Next</button>
-      </div>
+      <div class="buttons"><button onclick="goToPage(5)">Next</button></div>
     </div>
 
     <!-- PAGE 5 -->
@@ -197,9 +184,7 @@
         beautiful smile is everything to me.
       </p>
       <img src="images/smile_hot_choco.jpeg" class="photo" />
-      <div class="buttons">
-        <button onclick="goToPage(6)">Next</button>
-      </div>
+      <div class="buttons"><button onclick="goToPage(6)">Next</button></div>
     </div>
 
     <!-- PAGE 6 -->
@@ -211,9 +196,7 @@
         making me a better man every day.
       </p>
       <img src="images/gym2.jpeg" class="photo" />
-      <div class="buttons">
-        <button onclick="goToPage(7)">Next</button>
-      </div>
+      <div class="buttons"><button onclick="goToPage(7)">Next</button></div>
     </div>
 
     <!-- PAGE 7 -->
@@ -221,13 +204,10 @@
       <h2>With you...</h2>
       <p>
         I feel at home. I feel like I belong and I am understood. I wish to have
-        this feeling for the rest of my life with you. Thank you for coming into
-        my life — you mean the world to me. You are my world.
+        this feeling for the rest of my life with you. You are my world.
       </p>
       <img src="images/cook.jpeg" class="photo" />
-      <div class="buttons">
-        <button onclick="goToPage(8)">Next</button>
-      </div>
+      <div class="buttons"><button onclick="goToPage(8)">Next</button></div>
     </div>
 
     <!-- PAGE 8 -->
@@ -235,16 +215,19 @@
       <h2>Happy birthday my love</h2>
       <p>
         You have such an ambitious hunger for your future, for our future. I
-        can't help but look up to you even though you are younger than me. You
-        are an amazing woman — thank you for allowing me into your life. I wish
-        to spend the rest of mine with you. I can't wait to make countless
-        memories by your side. I look forward to every day and night with you. I
-        love you.
+        wish to spend the rest of mine with you.
       </p>
-
       <p class="final-line">Happy birhtday my love&lt;3</p>
-
       <img src="images/tree.jpeg" class="photo" />
+      <div class="buttons">
+        <button onclick="goToPage(9)">Continue ❤️</button>
+      </div>
+    </div>
+
+    <!-- PAGE 9 -->
+    <div class="page" id="page-9">
+      <h2>Always you ❤️</h2>
+      <p>No matter where life takes us, I choose you — again and again.</p>
       <div class="buttons">
         <button onclick="goToPage(1)">Read again ❤️</button>
       </div>
@@ -252,6 +235,7 @@
 
     <script>
       const music = document.getElementById("bg-music");
+      const effects = document.getElementById("effects");
       let musicStarted = false;
 
       function openLetter() {
@@ -263,24 +247,51 @@
         goToPage(2);
       }
 
-      function goToPage(pageNumber) {
-        document.querySelectorAll(".page").forEach((page) => {
-          page.classList.remove("active");
-        });
-        document.getElementById(`page-${pageNumber}`).classList.add("active");
+      function goToPage(n) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById(`page-${n}`).classList.add("active");
+
+        effects.innerHTML = "";
+
+        if (n === 9) {
+          document.body.style.background =
+            "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/back_ground_2.jpg')";
+          hearts();
+        } else {
+          document.body.style.background =
+            "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/main_background.jpg')";
+          snow();
+        }
       }
 
-      const snowContainer = document.getElementById("snow");
-      for (let i = 0; i < 60; i++) {
-        const flake = document.createElement("div");
-        flake.className = "snowflake";
-        flake.textContent = "❄";
-        flake.style.left = Math.random() * 100 + "vw";
-        flake.style.animationDuration = 5 + Math.random() * 10 + "s";
-        flake.style.fontSize = 10 + Math.random() * 20 + "px";
-        flake.style.opacity = Math.random();
-        snowContainer.appendChild(flake);
+      function snow() {
+        for (let i = 0; i < 60; i++) {
+          const s = document.createElement("div");
+          s.className = "effect";
+          s.textContent = "❄";
+          s.style.left = Math.random() * 100 + "vw";
+          s.style.animationDuration = 5 + Math.random() * 10 + "s";
+          s.style.fontSize = 10 + Math.random() * 20 + "px";
+          effects.appendChild(s);
+        }
       }
+
+      function hearts() {
+        const h = ["❤️", "💖", "💕", "💗", "💓"];
+        for (let i = 0; i < 50; i++) {
+          const e = document.createElement("div");
+          e.className = "effect";
+          e.textContent = h[Math.floor(Math.random() * h.length)];
+          e.style.left = Math.random() * 100 + "vw";
+          e.style.animationDuration = 6 + Math.random() * 8 + "s";
+          e.style.fontSize = 16 + Math.random() * 24 + "px";
+          effects.appendChild(e);
+        }
+      }
+
+      snow();
     </script>
   </body>
 </html>
